@@ -56,12 +56,6 @@ public class Solver implements ClickListener {
 		// update the tiles for display
 		for (int col = 0; col < 9; col++)
 			for (int row = 0; row < 9; row++) {
-//				DragAndDropWrapper wrapper = (DragAndDropWrapper) grid
-//						.getComponent(col, row);
-//				DropNumberHandler handler = (DropNumberHandler) wrapper
-//						.getDropHandler();
-//				handler.getLabel().setPropertyDataSource(
-//						board.getCellElement(col, row));
 				Label label = ((Label) ((DragAndDropWrapper) grid
 						.getComponent(col, row)).getData());
 				label.setPropertyDataSource(board.getCellElement(col, row));

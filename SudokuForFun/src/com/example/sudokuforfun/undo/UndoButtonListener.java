@@ -18,5 +18,4 @@ public class UndoButtonListener implements ClickListener {
 			lb.setPropertyDataSource(prop);
 		}
 	}
-
 }

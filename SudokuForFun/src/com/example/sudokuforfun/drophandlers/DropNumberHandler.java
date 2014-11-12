@@ -13,9 +13,6 @@ import com.vaadin.ui.Label;
 
 public class DropNumberHandler implements DropHandler {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -33,6 +30,7 @@ public class DropNumberHandler implements DropHandler {
 		System.out.println("New value:"
 				+ transferedLabel.getPropertyDataSource().getValue());
 
+		// Only update property value if player dragged in a not read only label
 		if (!prop.isReadOnly()) {
 			prop.setValue(transferedLabel.getPropertyDataSource().getValue());
 			label.setPropertyDataSource(prop);

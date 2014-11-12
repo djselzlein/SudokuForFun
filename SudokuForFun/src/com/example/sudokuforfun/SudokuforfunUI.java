@@ -30,8 +30,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.ProgressBar;
 import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.TabSheet.SelectedTabChangeEvent;
-import com.vaadin.ui.TabSheet.SelectedTabChangeListener;
 import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
@@ -42,12 +40,10 @@ import com.vaadin.ui.VerticalLayout;
 @Theme("sudokuforfun")
 public class SudokuforfunUI extends UI {
 
-	// private Panel panel;
 	private GridLayout grid;
 	private Board board;
 
 	private final VerticalLayout vLayout = new VerticalLayout();
-//	private final HorizontalLayout hLayout = new HorizontalLayout();
 	private UploadReceiver uploadReceiver;
 	private Upload upload;
 	private Button solveButton = new Button("Solve");
@@ -99,16 +95,7 @@ public class SudokuforfunUI extends UI {
 		// grid.addLayoutClickListener(new GridClickListener());
 
 		grid.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-		// grid.addStyleName("background-grey");
 		grid.addStyleName("v-gridlayout");
-		// grid.setSizeFull();
-
-		// panel = new Panel();
-		//
-		// panel.setContent(grid);
-		// panel.setWidth("330px");
-		// panel.setHeight("305px");
-		// panel.addStyleName("v-panel-caption");
 
 		board = new Board();
 
@@ -122,7 +109,6 @@ public class SudokuforfunUI extends UI {
 
 				label.setWidth(null);
 				label.setImmediate(true);
-				// label.setSizeUndefined();
 				label.setSizeFull();
 
 				if ((col == 8) || (col == 5) || (col == 2)) {
@@ -140,15 +126,10 @@ public class SudokuforfunUI extends UI {
 				DragAndDropWrapper wrapper = new DragAndDropWrapper(label);
 				wrapper.setDropHandler(new DropNumberHandler());
 				wrapper.setData(label);
-				// wrapper.setSizeUndefined();
 				wrapper.setSizeFull();
-				// wrapper.addStyleName("background-grey");
-				// label.addStyleName(Runo.);
 
 				// grid.addComponent(label, col, row);
 				grid.addComponent(wrapper, col, row);
-				// wrapper.setComponentAlignment(label,
-				// Alignment.MIDDLE_CENTER);
 			}
 
 		// //// Drag number section ////////
@@ -172,7 +153,6 @@ public class SudokuforfunUI extends UI {
 			wrapper.setSizeUndefined();
 			wrapper.setDragStartMode(DragStartMode.WRAPPER);
 			gridNumbers.addComponent(wrapper);
-
 			// gridNumbers.addComponent(label, col, 0);
 		}
 
@@ -222,21 +202,10 @@ public class SudokuforfunUI extends UI {
 		vlDropPane.addComponent(progress);
 		vlDropPane.setComponentAlignment(progress, Alignment.MIDDLE_CENTER);
 
-		// //
-
 		DropInputFileHandler dropBox = new DropInputFileHandler(tab, vlDropPane, puzzle, lbInfoLabel, progress);
 		dropBox.setSizeUndefined();
 
-		// //////
-
 		vLayout.addComponent(lbH1Label);
-//		vLayout.addComponent(hLayout);
-//		hLayout.addComponent(upload);
-		//
-//		vLayout.addComponent(lbOr);
-//		vLayout.addComponent(dropBox);
-		//
-
 		// /// ComboBox ////
 
 		levelCombo.addItem(PuzzleLevel.EASY);
@@ -257,19 +226,12 @@ public class SudokuforfunUI extends UI {
 		vLFirstTab.addComponent(upload);
 		vLFirstTab.addComponent(lbOrLevel);
 		vLFirstTab.addComponent(levelCombo);
-//		vLFirstTab.addComponent(filePathField);
 		
 		vLFirstTab.setComponentAlignment(upload, Alignment.MIDDLE_CENTER);
 		vLFirstTab.setComponentAlignment(lbOr, Alignment.MIDDLE_CENTER);
 		vLFirstTab.setComponentAlignment(lbOrLevel, Alignment.MIDDLE_CENTER);
 		vLFirstTab.setComponentAlignment(dropBox, Alignment.MIDDLE_CENTER);
 		vLFirstTab.setComponentAlignment(levelCombo, Alignment.MIDDLE_CENTER);
-//		vLFirstTab.setComponentAlignment(filePathField, Alignment.MIDDLE_CENTER);
-		
-//		VerticalLayout vLFirstTab = new VerticalLayout();
-//		vLFirstTab.addComponent(vLFirstTab);
-//		vLFirstTab.addComponent(playButton);
-//		vLFirstTab.setComponentAlignment(playButton, Alignment.BOTTOM_RIGHT);
 		
 		Tab t = tab.addTab(vLFirstTab, "Setup");
 		t.setEnabled(true);
@@ -277,13 +239,11 @@ public class SudokuforfunUI extends UI {
 		VerticalLayout vLSecondTab = new VerticalLayout();
 		vLSecondTab.setMargin(true);
 		vLSecondTab.setSpacing(true);
-//		vLSecondTab.addComponent(grid);
 		vLSecondTab.addComponent(panelNumbers);
 		vLSecondTab.addComponent(undoButton);
 		vLSecondTab.addComponent(solveButton);
 		vLSecondTab.addComponent(checkButton);
 		
-//		vLSecondTab.setComponentAlignment(grid, Alignment.MIDDLE_CENTER);
 		vLSecondTab.setComponentAlignment(panelNumbers, Alignment.MIDDLE_CENTER);
 		vLSecondTab.setComponentAlignment(solveButton, Alignment.MIDDLE_CENTER);
 		vLSecondTab.setComponentAlignment(checkButton, Alignment.MIDDLE_CENTER);
@@ -303,45 +263,11 @@ public class SudokuforfunUI extends UI {
 		vteste.setComponentAlignment(hLSecondTab, Alignment.MIDDLE_CENTER);
 		vteste.setComponentAlignment(restartButton, Alignment.BOTTOM_RIGHT);
 		tab.addTab(vteste, "Play");
-		tab.addSelectedTabChangeListener(new SelectedTabChangeListener() {
-			
-			@Override
-			public void selectedTabChange(SelectedTabChangeEvent event) {
-//				TabSheet tabSheet = (TabSheet) event.getTabSheet().getTabIndex();
-				System.out.println(event.getTabSheet().getTabIndex());
-//				tab.getTab(event.getTabSheet().getTabIndex()).setEnabled(false);
-			}
-		});
 		
 		vLayout.addComponent(tab);
 		vLayout.setComponentAlignment(tab, Alignment.MIDDLE_CENTER);
-		// ///////////
-
-		// hLayout.setComponentAlignment(solveButton, Alignment.BOTTOM_RIGHT);
-//		vLayout.setComponentAlignment(dropBox, Alignment.MIDDLE_CENTER);
-		// vLayout.setComponentAlignment(hLayout, Alignment.MIDDLE_CENTER);
-//		vLayout.setComponentAlignment(lbOr, Alignment.MIDDLE_CENTER);
-//		vLayout.setComponentAlignment(lbH1Label, Alignment.MIDDLE_CENTER);
-
-//		vLayout.addComponent(grid);
-//		vLayout.addComponent(levelCombo);
-//		vLayout.addComponent(filePathField);
-//		vLayout.addComponent(undoButton);
-//		vLayout.addComponent(panelNumbers);
-//		vLayout.addComponent(solveButton);
-//		vLayout.addComponent(checkButton);
-
-//		vLayout.setComponentAlignment(grid, Alignment.MIDDLE_CENTER);
-//		vLayout.setComponentAlignment(levelCombo, Alignment.MIDDLE_CENTER);
-//		vLayout.setComponentAlignment(filePathField, Alignment.MIDDLE_CENTER);
-//		vLayout.setComponentAlignment(panelNumbers, Alignment.MIDDLE_CENTER);
-//		vLayout.setComponentAlignment(solveButton, Alignment.MIDDLE_CENTER);
-//		vLayout.setComponentAlignment(checkButton, Alignment.MIDDLE_CENTER);
-//		vLayout.setComponentAlignment(undoButton, Alignment.MIDDLE_CENTER);
-
 		vLayout.setMargin(true);
 		vLayout.setSpacing(true);
-		// vLayout.setPrimaryStyleName("valo-flat");
 
 		setContent(vLayout);
 

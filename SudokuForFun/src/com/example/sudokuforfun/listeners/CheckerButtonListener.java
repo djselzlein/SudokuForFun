@@ -26,11 +26,8 @@ public class CheckerButtonListener implements ClickListener {
 	private static List<Cube> cubeList;
 
 	private Board board;
-	// private GridLayout grid;
-	// private Component root;
 
 	public CheckerButtonListener(GridLayout grid, Board board) {
-		// this.grid = grid;
 		this.board = board;
 	}
 
@@ -63,17 +60,6 @@ public class CheckerButtonListener implements ClickListener {
 		}
 
 		System.out.println(checkSudoku());
-
-		// // update the tiles for display
-		// for (int col = 0; col < 9; col++)
-		// for (int row = 0; row < 9; row++) {
-		// DragAndDropWrapper wrapper = (DragAndDropWrapper) grid
-		// .getComponent(col, row);
-		// DropNumberHandler handler = (DropNumberHandler) wrapper
-		// .getDropHandler();
-		// handler.getLabel().setPropertyDataSource(
-		// board.getCellElement(col, row));
-		// }
 	}
 
 	/*
@@ -103,38 +89,14 @@ public class CheckerButtonListener implements ClickListener {
 	 * Are there any conflicts ?
 	 */
 	private boolean AreThereConflicts(Integer number, Integer row, Integer col) {
-
-		// Cube cc = findCube(row, col);
-
-		// // is the number already in the cube?
-		// if (cc.getCubeValues().contains(number)) {
-		// return true;
-		// }
-
-		// is the number already found in the same row or column of the board?
 		for (int k = 0; k < 9; k++) {
-
 			if ((number == board.getIntValue(k, row) && (k != col)) || ((board
 					.getIntValue(col, k) == number) && (k != row))) {
 				return true;
 			}
 		}
-
 		return false;
 	}
-
-	// /*
-	// * Find cube
-	// */
-	// private Cube findCube(int i, int j) {
-	// for (Cube ll : cubeList) {
-	// if (i >= ll.getRowfromIndex() && i < ll.getRowtoIndex()
-	// && j >= ll.getColfromIndex() && j < ll.getColtoIndex()) {
-	// return ll;
-	// }
-	// }
-	// return null;
-	// }
 
 	/*
 	 * Returns an empty square

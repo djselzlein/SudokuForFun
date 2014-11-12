@@ -71,26 +71,17 @@ public class PopulateBoard {
 			// update the tiles for display
 			for (col = 0; col < 9; col++)
 				for (row = 0; row < 9; row++) {
-					// DragAndDropWrapper wrapper = (DragAndDropWrapper) grid
-					// .getComponent(col, row);
-					// DropNumberHandler handler = (DropNumberHandler) wrapper
-					// .getDropHandler();
-					// handler.getLabel().setPropertyDataSource(
-					// board.getCellElement(col, row));
 					Label label = ((Label) ((DragAndDropWrapper) grid
 							.getComponent(col, row)).getData());
 					label.setPropertyDataSource(board.getCellElement(col, row));
-//					label.addStyleName("dj-gridlayout");
 					if (board.getCellElement(col, row).isReadOnly()) {
 						label.removeStyleName("colored bold");
-//						label.removeStyleName("dj-background-not-read-only");
 						label.addStyleName("black bold");
 						label.addStyleName("dj-background-read-only");
 						
 					} else {
 						label.removeStyleName("dj-background-read-only");
 						label.removeStyleName("black bold");
-//						label.addStyleName("dj-background-not-read-only");
 						label.addStyleName("colored bold");
 					}
 				}
@@ -98,7 +89,6 @@ public class PopulateBoard {
 			System.out.println(board);
 			br.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
