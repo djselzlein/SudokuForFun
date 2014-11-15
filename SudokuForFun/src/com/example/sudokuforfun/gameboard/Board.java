@@ -33,7 +33,7 @@ public class Board
 	
 	public boolean isModifiable( int x, int y )
 	{
-		return cell[x][y].isReadOnly();
+		return !cell[x][y].isReadOnly();
 	}
 	
 	public void setReadOnly(int x, int y, boolean readOnly )
