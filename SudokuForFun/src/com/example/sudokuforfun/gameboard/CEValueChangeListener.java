@@ -1,4 +1,4 @@
-package com.example.sudokuforfun.listeners;
+package com.example.sudokuforfun.gameboard;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;

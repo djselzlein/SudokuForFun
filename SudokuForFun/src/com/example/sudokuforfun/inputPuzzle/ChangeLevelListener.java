@@ -1,4 +1,4 @@
-package com.example.sudokuforfun.level;
+package com.example.sudokuforfun.inputPuzzle;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;

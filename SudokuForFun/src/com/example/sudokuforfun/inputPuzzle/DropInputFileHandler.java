@@ -1,11 +1,10 @@
-package com.example.sudokuforfun.drophandlers;
+package com.example.sudokuforfun.inputPuzzle;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import com.example.sudokuforfun.level.PopulateBoard;
 import com.vaadin.annotations.Theme;
 import com.vaadin.event.dd.DragAndDropEvent;
 import com.vaadin.event.dd.DropHandler;

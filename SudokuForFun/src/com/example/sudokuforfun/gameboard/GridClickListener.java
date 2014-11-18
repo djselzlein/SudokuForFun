@@ -1,6 +1,5 @@
-package com.example.sudokuforfun.listeners;
+package com.example.sudokuforfun.gameboard;
 
-import com.example.sudokuforfun.gameboard.CellElement;
 import com.vaadin.data.Property;
 import com.vaadin.event.LayoutEvents.LayoutClickEvent;
 import com.vaadin.event.LayoutEvents.LayoutClickListener;

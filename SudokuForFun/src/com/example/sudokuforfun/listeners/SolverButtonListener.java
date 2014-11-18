@@ -13,7 +13,7 @@ import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 
-public class Solver implements ClickListener {
+public class SolverButtonListener implements ClickListener {
 
 	private static final long serialVersionUID = 1L;
 	private static Cube c1, c2, c3, c4, c5, c6, c7, c8, c9;
@@ -22,7 +22,7 @@ public class Solver implements ClickListener {
 	private Board board;
 	private GridLayout grid;
 
-	public Solver(GridLayout grid, Board board) {
+	public SolverButtonListener(GridLayout grid, Board board) {
 		this.grid = grid;
 		this.board = board;
 	}

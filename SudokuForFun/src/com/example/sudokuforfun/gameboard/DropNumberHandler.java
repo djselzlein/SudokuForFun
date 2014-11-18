@@ -1,6 +1,5 @@
-package com.example.sudokuforfun.drophandlers;
+package com.example.sudokuforfun.gameboard;
 
-import com.example.sudokuforfun.gameboard.CellElement;
 import com.example.sudokuforfun.undo.SingletonStack;
 import com.example.sudokuforfun.undo.StackElement;
 import com.vaadin.event.dd.DragAndDropEvent;

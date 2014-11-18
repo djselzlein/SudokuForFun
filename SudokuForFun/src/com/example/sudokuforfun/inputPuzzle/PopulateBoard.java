@@ -1,4 +1,4 @@
-package com.example.sudokuforfun.level;
+package com.example.sudokuforfun.inputPuzzle;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -57,8 +57,7 @@ public class PopulateBoard {
 
 				col = 0;
 				for (String s : field) {
-					// set to ReadOnly to false to allow for
-					// update
+					// set to ReadOnly to false to allow for update
 					board.setReadOnly(col, row, false);
 
 					board.setValue(col, row, s, s.equals("0") ? false : true);

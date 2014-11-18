@@ -2,17 +2,18 @@ package com.example.sudokuforfun;
 
 import javax.servlet.annotation.WebServlet;
 
-import com.example.sudokuforfun.drophandlers.DropInputFileHandler;
-import com.example.sudokuforfun.drophandlers.DropNumberHandler;
 import com.example.sudokuforfun.gameboard.Board;
+import com.example.sudokuforfun.gameboard.CEValueChangeListener;
 import com.example.sudokuforfun.gameboard.CellElement;
-import com.example.sudokuforfun.level.ChangeLevelListener;
-import com.example.sudokuforfun.level.PopulateBoard;
-import com.example.sudokuforfun.level.PuzzleLevel;
-import com.example.sudokuforfun.listeners.CEValueChangeListener;
+import com.example.sudokuforfun.gameboard.DropNumberHandler;
+import com.example.sudokuforfun.inputPuzzle.ChangeLevelListener;
+import com.example.sudokuforfun.inputPuzzle.DropInputFileHandler;
+import com.example.sudokuforfun.inputPuzzle.PopulateBoard;
+import com.example.sudokuforfun.inputPuzzle.UploadReceiver;
+import com.example.sudokuforfun.inputPuzzle.level.PuzzleLevel;
 import com.example.sudokuforfun.listeners.CheckerButtonListener;
 import com.example.sudokuforfun.listeners.RestartButtonListener;
-import com.example.sudokuforfun.listeners.Solver;
+import com.example.sudokuforfun.listeners.SolverButtonListener;
 import com.example.sudokuforfun.undo.UndoButtonListener;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -31,7 +32,6 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.ProgressBar;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.Tab;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
@@ -51,10 +51,9 @@ public class SudokuforfunUI extends UI {
 	private Button undoButton = new Button("Undo");
 	private Button restartButton = new Button("Restart");
 	private ComboBox levelCombo = new ComboBox("Choose a Level");
-	private TextField filePathField = new TextField();
 	private final TabSheet tab = new TabSheet();
 	
-	private PopulateBoard puzzle;
+	private PopulateBoard populate;
 
 	private ProgressBar progress;
 
@@ -165,9 +164,9 @@ public class SudokuforfunUI extends UI {
 
 		// ///////////////////////
 
-		puzzle = new PopulateBoard(grid, board);
+		populate = new PopulateBoard(grid, board);
 
-		uploadReceiver = new UploadReceiver(tab, puzzle);
+		uploadReceiver = new UploadReceiver(tab, populate);
 		upload = new Upload(" ", uploadReceiver);
 		upload.setButtonCaption("Upload initial puzzle");
 		upload.setImmediate(true);
@@ -183,13 +182,13 @@ public class SudokuforfunUI extends UI {
 		Label lbH1Label = new Label("Sudoku for Fun");
 		lbH1Label.setWidth(lbH1Label.getCaption());
 		lbH1Label.addStyleName("h1");
+		
 		Label lbOr = new Label("Or");
 		Label lbOrLevel = new Label("Or");
 		lbOr.setWidth(lbOr.getCaption());
 		lbOrLevel.setWidth(lbOrLevel.getCaption());
-
 		lbInfoLabel.setWidth(lbInfoLabel.getCaption());
-		lbInfoLabel.addStyleName("");
+		
 		VerticalLayout vlDropPane = new VerticalLayout(lbInfoLabel);
 		vlDropPane.setComponentAlignment(lbInfoLabel, Alignment.MIDDLE_CENTER);
 		vlDropPane.setWidth(240.0f, Unit.PIXELS);
@@ -202,19 +201,16 @@ public class SudokuforfunUI extends UI {
 		vlDropPane.addComponent(progress);
 		vlDropPane.setComponentAlignment(progress, Alignment.MIDDLE_CENTER);
 
-		DropInputFileHandler dropBox = new DropInputFileHandler(tab, vlDropPane, puzzle, lbInfoLabel, progress);
+		DropInputFileHandler dropBox = new DropInputFileHandler(tab, vlDropPane, populate, lbInfoLabel, progress);
 		dropBox.setSizeUndefined();
 
 		vLayout.addComponent(lbH1Label);
+		
 		// /// ComboBox ////
-
 		levelCombo.addItem(PuzzleLevel.EASY);
 		levelCombo.addItem(PuzzleLevel.MEDIUM);
 		levelCombo.addItem(PuzzleLevel.HARD);
 		levelCombo.setTextInputAllowed(false);
-
-		filePathField.setEnabled(false);
-
 		// //////////////
 
 		VerticalLayout vLFirstTab = new VerticalLayout();
@@ -271,13 +267,12 @@ public class SudokuforfunUI extends UI {
 
 		setContent(vLayout);
 
-		// upload.setReceiver(uploadReceiver);
 		upload.addFinishedListener(uploadReceiver);
 
 		/*
 		 * Click on the Solve Button
 		 */
-		solveButton.addClickListener(new Solver(grid, board));
+		solveButton.addClickListener(new SolverButtonListener(grid, board));
 
 		/*
 		 * Click on the Undo Button
@@ -288,7 +283,7 @@ public class SudokuforfunUI extends UI {
 		 * Change on Level ComboBox
 		 */
 		levelCombo.addValueChangeListener(new ChangeLevelListener(
-				tab, puzzle));
+				tab, populate));
 
 		/*
 		 * Click on the Check Button
