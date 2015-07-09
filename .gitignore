@@ -1,5 +1,7 @@
 
 # /
+/.classpath
+/.project
 /.cvsignore
 /.tomcatplugin
 /.settings
@@ -79,3 +81,4 @@ WebContent/VAADIN/vaadinPush.debug.js
 result
 
 .sass-cache
+/target/
