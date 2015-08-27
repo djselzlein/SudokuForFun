@@ -42,6 +42,10 @@
 		</plugins>
 	</build>
 	<dependencies>
+        	<dependency>
+            		<groupId>eu.hurion.vaadin.heroku</groupId>
+            		<artifactId>vaadin-for-heroku</artifactId>
+        	</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-server</artifactId>

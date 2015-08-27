@@ -36,6 +36,9 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 
+import static eu.hurion.vaadin.heroku.VaadinForHeroku.forApplication;
+import static eu.hurion.vaadin.heroku.VaadinForHeroku.herokuServer;
+
 @SuppressWarnings("serial")
 @Theme("sudokuforfun")
 public class SudokuforfunUI extends UI {
@@ -61,6 +64,10 @@ public class SudokuforfunUI extends UI {
 	@VaadinServletConfiguration(productionMode = false, ui = SudokuforfunUI.class)
 	public static class Servlet extends VaadinServlet {
 	}
+
+    	public static void main(final String[] args) {
+        	    herokuServer(forApplication(SudokuforfunUI.class)).start();
+    	}
 
 	@Override
 	protected void init(VaadinRequest request) {
