@@ -36,6 +36,9 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 
+import static eu.hurion.vaadin.heroku.VaadinForHeroku.herokuServer;
+import static eu.hurion.vaadin.heroku.VaadinForHeroku.forApplication;
+
 @SuppressWarnings("serial")
 @Theme("sudokuforfun")
 public class SudokuforfunUI extends UI {
@@ -52,7 +55,7 @@ public class SudokuforfunUI extends UI {
 	private Button restartButton = new Button("Restart");
 	private ComboBox levelCombo = new ComboBox("Choose a Level");
 	private final TabSheet tab = new TabSheet();
-	
+
 	private PopulateBoard populate;
 
 	private ProgressBar progress;
@@ -175,20 +178,20 @@ public class SudokuforfunUI extends UI {
 		undoButton.addStyleName("v-button-primary");
 		checkButton.addStyleName("v-button-friendly");
 		restartButton.addStyleName("v-button-friendly");
-		
+
 		// ///////
 
 		Label lbInfoLabel = new Label("Drag your initial puzzle here");
 		Label lbH1Label = new Label("Sudoku for Fun");
 		lbH1Label.setWidth(lbH1Label.getCaption());
 		lbH1Label.addStyleName("h1");
-		
+
 		Label lbOr = new Label("Or");
 		Label lbOrLevel = new Label("Or");
 		lbOr.setWidth(lbOr.getCaption());
 		lbOrLevel.setWidth(lbOrLevel.getCaption());
 		lbInfoLabel.setWidth(lbInfoLabel.getCaption());
-		
+
 		VerticalLayout vlDropPane = new VerticalLayout(lbInfoLabel);
 		vlDropPane.setComponentAlignment(lbInfoLabel, Alignment.MIDDLE_CENTER);
 		vlDropPane.setWidth(240.0f, Unit.PIXELS);
@@ -201,11 +204,12 @@ public class SudokuforfunUI extends UI {
 		vlDropPane.addComponent(progress);
 		vlDropPane.setComponentAlignment(progress, Alignment.MIDDLE_CENTER);
 
-		DropInputFileHandler dropBox = new DropInputFileHandler(tab, vlDropPane, populate, lbInfoLabel, progress);
+		DropInputFileHandler dropBox = new DropInputFileHandler(tab,
+				vlDropPane, populate, lbInfoLabel, progress);
 		dropBox.setSizeUndefined();
 
 		vLayout.addComponent(lbH1Label);
-		
+
 		// /// ComboBox ////
 		levelCombo.addItem(PuzzleLevel.EASY);
 		levelCombo.addItem(PuzzleLevel.MEDIUM);
@@ -216,19 +220,19 @@ public class SudokuforfunUI extends UI {
 		VerticalLayout vLFirstTab = new VerticalLayout();
 		vLFirstTab.setMargin(true);
 		vLFirstTab.setSpacing(true);
-		
+
 		vLFirstTab.addComponent(dropBox);
 		vLFirstTab.addComponent(lbOr);
 		vLFirstTab.addComponent(upload);
 		vLFirstTab.addComponent(lbOrLevel);
 		vLFirstTab.addComponent(levelCombo);
-		
+
 		vLFirstTab.setComponentAlignment(upload, Alignment.MIDDLE_CENTER);
 		vLFirstTab.setComponentAlignment(lbOr, Alignment.MIDDLE_CENTER);
 		vLFirstTab.setComponentAlignment(lbOrLevel, Alignment.MIDDLE_CENTER);
 		vLFirstTab.setComponentAlignment(dropBox, Alignment.MIDDLE_CENTER);
 		vLFirstTab.setComponentAlignment(levelCombo, Alignment.MIDDLE_CENTER);
-		
+
 		Tab t = tab.addTab(vLFirstTab, "Setup");
 		t.setEnabled(true);
 
@@ -239,12 +243,13 @@ public class SudokuforfunUI extends UI {
 		vLSecondTab.addComponent(undoButton);
 		vLSecondTab.addComponent(solveButton);
 		vLSecondTab.addComponent(checkButton);
-		
-		vLSecondTab.setComponentAlignment(panelNumbers, Alignment.MIDDLE_CENTER);
+
+		vLSecondTab
+				.setComponentAlignment(panelNumbers, Alignment.MIDDLE_CENTER);
 		vLSecondTab.setComponentAlignment(solveButton, Alignment.MIDDLE_CENTER);
 		vLSecondTab.setComponentAlignment(checkButton, Alignment.MIDDLE_CENTER);
 		vLSecondTab.setComponentAlignment(undoButton, Alignment.MIDDLE_CENTER);
-		
+
 		HorizontalLayout hLSecondTab = new HorizontalLayout();
 		hLSecondTab.setMargin(true);
 		hLSecondTab.setSpacing(true);
@@ -252,14 +257,14 @@ public class SudokuforfunUI extends UI {
 		hLSecondTab.addComponent(grid);
 		hLSecondTab.setComponentAlignment(vLSecondTab, Alignment.MIDDLE_CENTER);
 		hLSecondTab.setComponentAlignment(grid, Alignment.MIDDLE_CENTER);
-		
+
 		VerticalLayout vteste = new VerticalLayout();
 		vteste.addComponent(hLSecondTab);
 		vteste.addComponent(restartButton);
 		vteste.setComponentAlignment(hLSecondTab, Alignment.MIDDLE_CENTER);
 		vteste.setComponentAlignment(restartButton, Alignment.BOTTOM_RIGHT);
 		tab.addTab(vteste, "Play");
-		
+
 		vLayout.addComponent(tab);
 		vLayout.setComponentAlignment(tab, Alignment.MIDDLE_CENTER);
 		vLayout.setMargin(true);
@@ -282,18 +287,22 @@ public class SudokuforfunUI extends UI {
 		/*
 		 * Change on Level ComboBox
 		 */
-		levelCombo.addValueChangeListener(new ChangeLevelListener(
-				tab, populate));
+		levelCombo
+				.addValueChangeListener(new ChangeLevelListener(tab, populate));
 
 		/*
 		 * Click on the Check Button
 		 */
 		checkButton.addClickListener(new CheckerButtonListener(grid, board));
-		
+
 		/*
 		 * Click on the Play Button
 		 */
 		restartButton.addClickListener(new RestartButtonListener(tab));
+	}
+
+	public static void main(final String[] args) {
+		herokuServer(forApplication(SudokuforfunUI.class)).start();
 	}
 
 }
