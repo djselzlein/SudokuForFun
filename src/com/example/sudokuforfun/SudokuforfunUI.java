@@ -36,8 +36,8 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 
-import static eu.hurion.vaadin.heroku.VaadinForHeroku.herokuServer;
 import static eu.hurion.vaadin.heroku.VaadinForHeroku.forApplication;
+import static eu.hurion.vaadin.heroku.VaadinForHeroku.herokuServer;
 
 @SuppressWarnings("serial")
 @Theme("sudokuforfun")
