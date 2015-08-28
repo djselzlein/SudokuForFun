@@ -42,11 +42,11 @@
 		</plugins>
 	</build>
 	<dependencies>
-        <dependency>
-            <groupId>eu.hurion.vaadin.heroku</groupId>
-            <artifactId>vaadin-for-heroku</artifactId>
-            <version>1.0</version>
-        </dependency>
+		<dependency>
+			<groupId>eu.hurion.vaadin.heroku</groupId>
+			<artifactId>vaadin-for-heroku</artifactId>
+			<version>1.0</version>
+		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-server</artifactId>
@@ -69,10 +69,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>3.0.1</version>
-    		<scope>provided</scope>
-    	</dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
