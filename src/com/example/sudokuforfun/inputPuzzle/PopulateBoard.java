@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 
 import com.example.sudokuforfun.gameboard.Board;
 import com.example.sudokuforfun.undo.SingletonStack;
@@ -20,7 +21,10 @@ import com.vaadin.ui.Label;
  *         provided by players or predefined by difficulty levels.
  *
  */
-public class PopulateBoard {
+public class PopulateBoard implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
 	public static String REMOTE_INPUT = "remote_input.txt";
 
 	private GridLayout grid;
