@@ -1,9 +1,13 @@
 package com.example.sudokuforfun.gameboard;
 
+import java.io.Serializable;
+
 import com.vaadin.data.Property;
 
-public class Board 
+public class Board implements Serializable 
 {
+	private static final long serialVersionUID = 1L;
+	
 	public final static int T_COL = 9;
 	public final static int T_ROW = 9;
 

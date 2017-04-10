@@ -1,5 +1,7 @@
 package com.example.sudokuforfun.gameboard;
 
+import java.io.Serializable;
+
 public enum CubeTypes {
 
 	TOPLEFT_11, TOPMIDDLE_12, TOPRIGHT_13,

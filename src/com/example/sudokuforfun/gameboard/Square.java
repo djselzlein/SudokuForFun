@@ -1,7 +1,11 @@
 package com.example.sudokuforfun.gameboard;
 
-public class Square {
+import java.io.Serializable;
 
+public class Square implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private boolean isEmptySquare;
 	private Integer rowIndex;
 	private Integer columnIndex;
